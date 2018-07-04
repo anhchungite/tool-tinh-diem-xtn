@@ -1,0 +1,15 @@
+th.text-center {
+  vertical-align: middle !important;
+}
+
+.result {
+  margin-top: 20px;
+}
+
+.subject.form-group {
+  margin-left: 10px;
+}
+
+.subject.form-group label{
+  margin-right: 5px;
+}
