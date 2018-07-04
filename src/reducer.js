@@ -203,6 +203,15 @@ var result = (state = 0, action) => {
             return state;
     }
 }
+var sateless = (state = [], action) => {
+    switch(action.type) {
+        case 'SET_SATELESS':
+            return action.items;
+        default:
+            return state;
+    }
+}
+
 var reducer = redux.combineReducers({
     requireSubjects,
     combineSubjects,
@@ -215,7 +224,8 @@ var reducer = redux.combineReducers({
     result,
     tb12,
     uutien,
-    kk
+    kk,
+    sateless
 });
 
 export default reducer;

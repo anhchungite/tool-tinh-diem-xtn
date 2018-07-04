@@ -12,7 +12,7 @@ class Subject extends Component {
         );
     }
     onChangeScore(id, e) {
-        var score = e.target.value
+        var score = e.target.value.trim()
         var patt = new RegExp(/^(?=.+)(?:[1-9]\d*|0)?(?:\.\d+)?$/);
         var res = patt.test(score);
         if(!res) {

@@ -52,6 +52,7 @@ class Form extends Component {
     e.preventDefault();
     var requireSubjects = []
     var combineSubjects = []
+    var sateless = []
     if(this.props.isTHPT) {
         requireSubjects = this.props.getSubjects(this.props.subjectsTHPT.require, this.props.subjects);
         combineSubjects = this.props.isKHTN ? this.props.getSubjects(this.props.subjectsTHPT.combine.khtn, this.props.subjects) : this.props.getSubjects(this.props.subjectsTHPT.combine.khxh, this.props.subjects)
@@ -64,9 +65,22 @@ class Form extends Component {
     var batBuoc = requireSubjects.reduce((total, i) => total += i.score, 0);
     var toHop = combineSubjects.reduce((total, i) => total += i.score, 0) / combineSubjects.length;
     var result = this.calcDiemXTN(batBuoc, toHop, this.props.tb12, this.props.kk, this.props.uutien);
+    var satelessRequireSubjects = this.checkSateless(requireSubjects);
+    var satelessCombineSubjects = this.checkSateless(combineSubjects);
+    sateless = [...satelessRequireSubjects, ...satelessCombineSubjects]
     this.props.setResult(result);
+    this.props.setSateless(sateless);
   }
 
+  checkSateless(subjects) {
+    var sateless = []
+    for(var i of subjects) {
+        if(i.score <= 1) {
+            sateless.push(i.name)
+        }
+    }
+    return sateless;
+  }
   calcDiemXTN(batBuoc, toHop, diemTB12, diemKK=0, diemUT=0) {
     var div = 3;
     if(this.props.isTHPT) {
@@ -77,7 +91,7 @@ class Form extends Component {
   }
 
   handleOnChangeTB12(e) {
-    var score = e.target.value
+    var score = e.target.value.trim()
     var patt = new RegExp(/^(?=.+)(?:[1-9]\d*|0)?(?:\.\d+)?$/);
     var res = patt.test(score);
     if(!res) {
@@ -87,7 +101,7 @@ class Form extends Component {
   }
 
   handleOnChangeKK(e) {
-    var score = e.target.value
+    var score = e.target.value.trim()
     var patt = new RegExp(/^(?=.+)(?:[1-9]\d*|0)?(?:\.\d+)?$/);
     var res = patt.test(score);
     if(!res) {
@@ -97,7 +111,7 @@ class Form extends Component {
 }
 
 handleOnChangeUT(e) {
-    var score = e.target.value
+    var score = e.target.value.trim()
     var patt = new RegExp(/^(?=.+)(?:[1-9]\d*|0)?(?:\.\d+)?$/);
     var res = patt.test(score);
     if(!res) {
@@ -185,6 +199,9 @@ const mapDispatchToProp = (dispatch) => {
         },
         setResult: (score) => {
             dispatch({type: 'SET_RESULT', score: score})
+        },
+        setSateless: (items) => {
+            dispatch({type: 'SET_SATELESS', items: items})
         }
     }
 }

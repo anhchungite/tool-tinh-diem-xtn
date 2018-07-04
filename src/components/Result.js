@@ -37,7 +37,8 @@ class Result extends Component {
             </tr>
             <tr>
             <td colSpan={this.props.requireSubjects.length + this.props.combineSubjects.length + 3}>
-            <strong>Điểm xét TN: </strong> {this.props.result} ({this.props.result >= 5 ? 'Đạt' : 'Trượt'})
+            <strong>Điểm xét TN: </strong> {this.props.result} ({this.props.result <= 5 || this.props.sateless.length > 0 ? 'Trượt' : 'Đạt'} - 
+            {this.props.sateless.length > 0 ? ' Điểm liệt: ' + this.props.sateless.join(', ') :' Không có điểm liệt'})
             </td>
           </tr>
           </tbody>
@@ -54,7 +55,8 @@ const mapStateToProp = (state) => {
       result: state.result,
       tb12: state.tb12,
       uutien: state.uutien,
-      kk: state.kk
+      kk: state.kk,
+      sateless: state.sateless
   }
 }
 
