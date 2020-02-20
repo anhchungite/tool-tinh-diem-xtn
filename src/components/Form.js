@@ -17,15 +17,15 @@ class Form extends Component {
                 <hr/>
                 <div className="subject form-group">
                     <label className="control-label"> TB lớp 12: </label>
-                    <input type="text" onChange={this.handleOnChangeTB12.bind(this)} className="form-control" defaultValue={this.props.tb12}/>
+                    <input type="text" onChange={this.handleOnChangeTB12.bind(this)} className="form-control" placeholder={this.props.tb12}/>
                 </div>
                 <div className="subject form-group">
                     <label className="control-label"> Khuyến khích (nếu có): </label>
-                    <input type="text" onChange={this.handleOnChangeKK.bind(this)} className="form-control" defaultValue={this.props.kk}/>
+                    <input type="text" onChange={this.handleOnChangeKK.bind(this)} className="form-control" placeholder={this.props.kk}/>
                 </div>
                 <div className="subject form-group">
                     <label className="control-label"> Ưu tiên (nếu có): </label>
-                    <input type="text" onChange={this.handleOnChangeUT.bind(this)} className="form-control" defaultValue={this.props.uutien}/>
+                    <input type="text" onChange={this.handleOnChangeUT.bind(this)} className="form-control" placeholder={this.props.uutien}/>
                 </div>
                 <hr/>
                 <h4>Điểm các môn bắt buộc:</h4>

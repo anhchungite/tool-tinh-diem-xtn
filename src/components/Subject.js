@@ -7,7 +7,7 @@ class Subject extends Component {
         return (
         <div className="subject form-group">
             <label className="control-label"> {this.props.subjectProp.name}: </label>
-            <input type="text" onChange={this.onChangeScore.bind(this, this.props.subjectProp.id)} className="form-control" defaultValue={this.props.subjectProp.score}/>
+            <input type="text" onChange={this.onChangeScore.bind(this, this.props.subjectProp.id)} className="form-control" placeholder={this.props.subjectProp.score}/>
         </div>
         );
     }
